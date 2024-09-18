@@ -22,7 +22,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Create one Bike
     /// </summary>
     [HttpPost()]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<Bike>> CreateBike(BikeCreateInput input)
     {
         var bike = await _service.CreateBike(input);
@@ -34,7 +34,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Delete one Bike
     /// </summary>
     [HttpDelete("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> DeleteBike([FromRoute()] BikeWhereUniqueInput uniqueId)
     {
         try
@@ -53,7 +53,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Find many Bikes
     /// </summary>
     [HttpGet()]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<List<Bike>>> Bikes([FromQuery()] BikeFindManyArgs filter)
     {
         return Ok(await _service.Bikes(filter));
@@ -72,7 +72,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Get one Bike
     /// </summary>
     [HttpGet("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<Bike>> Bike([FromRoute()] BikeWhereUniqueInput uniqueId)
     {
         try
@@ -89,7 +89,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Update one Bike
     /// </summary>
     [HttpPatch("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> UpdateBike(
         [FromRoute()] BikeWhereUniqueInput uniqueId,
         [FromQuery()] BikeUpdateInput bikeUpdateDto
@@ -111,7 +111,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Connect multiple Rentals records to Bike
     /// </summary>
     [HttpPost("{Id}/rentals")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> ConnectRentals(
         [FromRoute()] BikeWhereUniqueInput uniqueId,
         [FromQuery()] RentalWhereUniqueInput[] rentalsId
@@ -133,7 +133,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Disconnect multiple Rentals records from Bike
     /// </summary>
     [HttpDelete("{Id}/rentals")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> DisconnectRentals(
         [FromRoute()] BikeWhereUniqueInput uniqueId,
         [FromBody()] RentalWhereUniqueInput[] rentalsId
@@ -155,7 +155,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Find multiple Rentals records for Bike
     /// </summary>
     [HttpGet("{Id}/rentals")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<List<Rental>>> FindRentals(
         [FromRoute()] BikeWhereUniqueInput uniqueId,
         [FromQuery()] RentalFindManyArgs filter
@@ -175,7 +175,7 @@ public abstract class BikesControllerBase : ControllerBase
     /// Update multiple Rentals records for Bike
     /// </summary>
     [HttpPatch("{Id}/rentals")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> UpdateRentals(
         [FromRoute()] BikeWhereUniqueInput uniqueId,
         [FromBody()] RentalWhereUniqueInput[] rentalsId

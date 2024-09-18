@@ -22,7 +22,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Create one Rental
     /// </summary>
     [HttpPost()]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<Rental>> CreateRental(RentalCreateInput input)
     {
         var rental = await _service.CreateRental(input);
@@ -34,7 +34,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Delete one Rental
     /// </summary>
     [HttpDelete("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> DeleteRental([FromRoute()] RentalWhereUniqueInput uniqueId)
     {
         try
@@ -53,7 +53,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Find many Rentals
     /// </summary>
     [HttpGet()]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<List<Rental>>> Rentals([FromQuery()] RentalFindManyArgs filter)
     {
         return Ok(await _service.Rentals(filter));
@@ -74,7 +74,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Get one Rental
     /// </summary>
     [HttpGet("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<Rental>> Rental([FromRoute()] RentalWhereUniqueInput uniqueId)
     {
         try
@@ -91,7 +91,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Update one Rental
     /// </summary>
     [HttpPatch("{Id}")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> UpdateRental(
         [FromRoute()] RentalWhereUniqueInput uniqueId,
         [FromQuery()] RentalUpdateInput rentalUpdateDto
@@ -125,7 +125,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Connect multiple Payments records to Rental
     /// </summary>
     [HttpPost("{Id}/payments")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> ConnectPayments(
         [FromRoute()] RentalWhereUniqueInput uniqueId,
         [FromQuery()] PaymentWhereUniqueInput[] paymentsId
@@ -147,7 +147,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Disconnect multiple Payments records from Rental
     /// </summary>
     [HttpDelete("{Id}/payments")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> DisconnectPayments(
         [FromRoute()] RentalWhereUniqueInput uniqueId,
         [FromBody()] PaymentWhereUniqueInput[] paymentsId
@@ -169,7 +169,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Find multiple Payments records for Rental
     /// </summary>
     [HttpGet("{Id}/payments")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult<List<Payment>>> FindPayments(
         [FromRoute()] RentalWhereUniqueInput uniqueId,
         [FromQuery()] PaymentFindManyArgs filter
@@ -189,7 +189,7 @@ public abstract class RentalsControllerBase : ControllerBase
     /// Update multiple Payments records for Rental
     /// </summary>
     [HttpPatch("{Id}/payments")]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin,superAdmin,user")]
     public async Task<ActionResult> UpdatePayments(
         [FromRoute()] RentalWhereUniqueInput uniqueId,
         [FromBody()] PaymentWhereUniqueInput[] paymentsId
