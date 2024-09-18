@@ -1,0 +1,31 @@
+import { JsonFilter } from "../../util/JsonFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { RoleListRelationFilter } from "../role/RoleListRelationFilter";
+
+export type UserProfileWhereInput = {
+  appMetadata?: JsonFilter;
+  aud?: StringNullableFilter;
+  audience?: StringNullableFilter;
+  confirmationDate?: DateTimeNullableFilter;
+  confirmedAt?: DateTimeNullableFilter;
+  email?: StringNullableFilter;
+  emailAddress?: StringNullableFilter;
+  emailConfirmedAt?: DateTimeNullableFilter;
+  id?: StringFilter;
+  identities?: JsonFilter;
+  isAnonymous?: BooleanNullableFilter;
+  lastSignInAt?: DateTimeNullableFilter;
+  phone?: StringNullableFilter;
+  phoneConfirmedAt?: DateTimeNullableFilter;
+  phoneNumber?: StringNullableFilter;
+  role?: StringNullableFilter;
+  roles?: RoleListRelationFilter;
+  supabaseId?: StringNullableFilter;
+  supabaseUserId?: StringNullableFilter;
+  userIdentities?: JsonFilter;
+  userMetadata?: JsonFilter;
+  userRole?: StringNullableFilter;
+};
